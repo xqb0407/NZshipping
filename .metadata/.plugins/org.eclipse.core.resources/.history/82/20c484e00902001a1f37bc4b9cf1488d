@@ -1,0 +1,52 @@
+package org.nzy.service.impl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.nzy.mapper.TbOrderItemMapper;
+import org.nzy.mapper.TbOrderMapper;
+import org.nzy.mapper.TbOrderShippingMapper;
+import org.nzy.pojo.TbList;
+import org.nzy.pojo.TbOrder;
+import org.nzy.pojo.TbOrderExample;
+import org.nzy.pojo.TbOrderItemExample;
+import org.nzy.service.OrederService;
+import org.nzy.utils.FjnyResult;
+import org.nzy.utils.LayuiReplay;
+import org.springframework.stereotype.Service;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+@Service
+public class OrederServiceImpl implements OrederService {
+	
+	Long limits = (long) 10;
+	@Resource
+	private TbOrderMapper tbOrderMapper;
+	@Resource 
+	private TbOrderShippingMapper tbOrderShippingMapper;
+	@Resource
+	private TbOrderItemMapper tbOrderItemMapper;
+	/**
+	 * 订单列表
+	 */
+	@Override
+	public LayuiReplay findOrderBySplitPage(Integer page, int limit) {
+		TbOrderExample example=new TbOrderExample();
+		PageHelper.startPage(page, limit);
+		List<TbOrder> list = tbOrderMapper.selectByExample(example);
+		PageInfo<TbList> info = new PageInfo(list);
+		long total = info.getTotal();
+		return LayuiReplay.ok((int)total,list);
+	}
+	/**
+	 * 查看商品详情
+	 */
+	@Override
+	public FjnyResult findOrderById(TbOrder tbOrder) {
+		
+		return null;
+	}
+
+}

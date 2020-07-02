@@ -1,0 +1,131 @@
+package org.nzy.order.service.impl;
+
+import java.util.Date;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.commons.lang3.StringUtils;
+import org.nzy.mapper.TbAddressMapper;
+import org.nzy.mapper.TbOrderItemMapper;
+import org.nzy.mapper.TbOrderMapper;
+import org.nzy.mapper.TbOrderShippingMapper;
+import org.nzy.order.dao.JedisClient;
+import org.nzy.order.pojo.Order;
+import org.nzy.order.service.OrderService;
+import org.nzy.pojo.FjnyResult;
+import org.nzy.pojo.TbAddress;
+import org.nzy.pojo.TbOrder;
+import org.nzy.pojo.TbOrderExample;
+import org.nzy.pojo.TbOrderExample.Criteria;
+import org.nzy.pojo.TbOrderItem;
+import org.nzy.pojo.TbOrderItemExample;
+import org.nzy.pojo.TbOrderShipping;
+import org.nzy.pojo.TbOrderShippingExample;
+import org.springframework.stereotype.Service;
+
+@Service
+public class OrederServiceImpl implements OrderService {
+	
+	@Resource
+	private TbOrderMapper tbOrderMapper;
+	
+	@Resource
+	private TbOrderItemMapper tbOrderItemMapper;
+	
+	@Resource
+	private TbOrderShippingMapper tbOrderShippingMapper;
+	
+	@Resource
+	private JedisClient jedisClient;
+	
+	@Resource
+	private TbAddressMapper tbAddressMapper;
+	
+	@Override
+	public FjnyResult createOrder(TbOrder order, List<TbOrderItem> orderItems, TbOrderShipping orderShipping) {
+		
+		//添加订单
+		//获取订单号
+		
+		String string = jedisClient.get("ORDER_GEN_KEY");
+		if(StringUtils.isBlank(string)) {
+			jedisClient.set("ORDER_GEN_KEY", "100000");
+		}else {
+			 jedisClient.incr("ORDER_GEN_KEY");
+		}
+		String orderId = jedisClient.get("ORDER_GEN_KEY");
+		//补全pojo的属性
+		order.setOrderId(orderId);
+		//状态：1、未付款2、已付款3、未发货4、已发货5、交易成功6、交易关闭
+		order.setStatus(1);
+		Date date = new Date();
+		order.setUpdateTime(date);
+		order.setCreateTime(date);
+		//0、未评价1、已评价
+		order.setBuyerRate(0);
+		tbOrderMapper.insert(order);
+		//添加订单明细表
+		for (TbOrderItem tbOrderItem : orderItems) {
+			//补全订单明细
+			//取得明细id
+			jedisClient.incr("ORDER_DETAIL_GEN_KEY");
+			String orderDetailId = jedisClient.get("ORDER_DETAIL_GEN_KEY");
+			tbOrderItem.setId(orderDetailId);
+			tbOrderItem.setOrderId(orderId);
+			//插入数据库表
+			tbOrderItemMapper.insert(tbOrderItem);
+		}
+		//插入物流表
+		//补全物流表的属性
+		orderShipping.setOrderId(orderId);
+		orderShipping.setCreated(date);
+		orderShipping.setUpdated(date);
+		//插入数据库
+		tbOrderShippingMapper.insert(orderShipping);
+		return FjnyResult.ok(orderId);
+	}
+
+	@Override
+	public FjnyResult getAddress() {
+		List<TbAddress> list = tbAddressMapper.selectByExample(null);
+		if(list.size()>0) {
+			return FjnyResult.ok(list);
+		}
+		return FjnyResult.build(500,"未设置过地址");
+	}
+	/**
+	 * 查询订单详情
+	 */
+	@Override
+	public FjnyResult getOrderList() {
+		//order信息
+		TbOrder tbod= new TbOrder();
+		TbOrderExample example = new TbOrderExample();
+		Criteria criteria = example.createCriteria();
+		List<TbOrder> order1 = tbOrderMapper.selectByExample(example);
+		Order order = new Order();
+		for (TbOrder tbOrder : order1) {
+			order.setOrderId(tbOrder.getOrderId());
+		}
+		
+		//item信息
+		TbOrderItemExample example1 = new TbOrderItemExample();
+		TbOrderItemExample.Criteria criteria2 = example1.createCriteria();
+		criteria2.andOrderIdEqualTo(order.getOrderId());
+		List<TbOrderItem> orderitem = tbOrderItemMapper.selectByExample(example1 );
+		for (TbOrderItem tbOrderItem : orderitem) {
+			order.setOrderItems(orderitem);
+		}
+		TbOrderShippingExample example3 = new TbOrderShippingExample();
+		org.nzy.pojo.TbOrderShippingExample.Criteria criteria3 = example3.createCriteria();
+		criteria3.andOrderIdEqualTo(order.getOrderId());
+		List<TbOrderShipping> orderShopping = tbOrderShippingMapper.selectByExample(example3 );
+		for (TbOrderShipping tbOrderShipping : orderShopping) {
+			order.setOrderShipping(tbOrderShipping);
+		}
+		//shopping信息
+		return FjnyResult.ok(order);
+	}
+
+}

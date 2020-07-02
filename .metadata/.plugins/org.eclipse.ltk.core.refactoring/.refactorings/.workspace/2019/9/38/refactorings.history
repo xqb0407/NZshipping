@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;mall-manager/mall-manager-mapper/src/main/java/org/nzy/mapper/TbUserMapper.out.xml&apos;" deleteContents="false" description="Delete resource &apos;mall-manager/mall-manager-mapper/src/main/java/org/nzy/mapper/TbUserMapper.out.xml&apos;" element1="/mall-manager/mall-manager-mapper/src/main/java/org/nzy/mapper/TbUserMapper.out.xml" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1568703129623"/>
+</session>

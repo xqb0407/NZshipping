@@ -1,0 +1,29 @@
+package org.nzy.service;
+
+import java.awt.Menu;
+import java.util.List;
+
+
+import org.nzy.pojo.TbUser;
+import org.nzy.utils.FjnyResult;
+import org.nzy.utils.LayuiReplay;
+
+public interface LoginService {
+	TbUser login(String username, String password); //登录
+	
+	FjnyResult regist(TbUser tbUser);//注册
+
+	FjnyResult updatePass(Long id,String password);//修改密码
+
+	FjnyResult updateTbuser(TbUser tbUser); //修改登录个人资料
+
+	LayuiReplay updateTbuser(String username, String phone); //找回密码
+
+	List<Menu> getResource(Long roleId); //权限查询
+
+	LayuiReplay tbMenusList(Integer page, Integer limit); //权限列表
+
+	LayuiReplay upresetpass(String username,String repass, String password); //重置密码
+	
+	
+}

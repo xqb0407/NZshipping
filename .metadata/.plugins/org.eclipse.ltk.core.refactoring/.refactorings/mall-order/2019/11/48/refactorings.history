@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;org.nzy.order.pojo.TbAssess&apos; to &apos;Assess&apos;&#x0D;&#x0A;- Original project: &apos;mall-order&apos;&#x0D;&#x0A;- Original element: &apos;org.nzy.order.pojo.TbAssess&apos;&#x0D;&#x0A;- Renamed element: &apos;org.nzy.order.pojo.Assess&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;TbAssess&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java&lt;org.nzy.order.pojo{TbAssess.java[TbAssess" matchStrategy="1" name="Assess" qualified="false" references="true" similarDeclarations="false" stamp="1575039118439" textual="false" version="1.0"/>
+</session>

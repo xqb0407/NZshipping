@@ -1,0 +1,12 @@
+INDEX VERSION 1.4+E:\企业级实训\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+227263203.index
+3930388108.index
+3421740093.index
+3470051544.index
+669922479.index
+1774064872.index
+3187985962.index
+2012080717.index
+893977888.index
+1171208667.index
+865903707.index

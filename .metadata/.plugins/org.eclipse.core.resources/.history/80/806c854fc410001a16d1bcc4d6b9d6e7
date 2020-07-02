@@ -1,0 +1,6 @@
+package org.nzy.pojo;
+
+public class Menu {
+	private String title;
+	private List<tb_menus>list; 
+}

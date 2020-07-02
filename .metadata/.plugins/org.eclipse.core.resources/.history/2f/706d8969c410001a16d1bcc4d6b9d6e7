@@ -1,0 +1,11 @@
+package org.nzy.pojo;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Menu {
+	private String title;
+	private List<TbMenus>list= new ArrayList<TbMenus>; 
+	
+	
+}

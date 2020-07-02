@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;XtreeData.java&apos; to &apos;mall-manager-pojo/src/main/java/org.nzy.pojo&apos;&#x0D;&#x0A;- Original project: &apos;irs&apos;&#x0D;&#x0A;- Destination element: &apos;mall-manager-pojo/src/main/java/org.nzy.pojo&apos;&#x0D;&#x0A;- Original element: &apos;com.irs.pojo.XtreeData.java&apos;" description="Copy compilation unit" destination="=mall-manager-pojo/src\/main\/java&lt;org.nzy.pojo" element1="/src&lt;com.irs.pojo{XtreeData.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1574904549714" units="1" version="1.0"/>
+</session>

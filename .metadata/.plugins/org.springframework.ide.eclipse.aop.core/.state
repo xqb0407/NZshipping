@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="mall-manager-service"/>
+<aop-project name="mall-sso"/>
+<aop-project name="mall-rest"/>
+<aop-project name="mall-manager-web"/>
+<aop-project name="mall-portal"/>
+<aop-project name="mall-order"/>
+</aop-reference-model>

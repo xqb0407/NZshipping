@@ -1,0 +1,28 @@
+package org.nzy.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class GoIndexController {
+	
+	@RequestMapping("/")
+	public String index() {
+		
+		return "login";
+	}
+	
+	@RequestMapping("/{page}")
+	public String showpage(@PathVariable String page) {
+		
+		return page;
+	}
+	
+	@RequestMapping("/{page}/{page}")
+	public String getToUserInfo(@PathVariable String page) {
+		return "page1/"+page;
+	}
+
+}
+

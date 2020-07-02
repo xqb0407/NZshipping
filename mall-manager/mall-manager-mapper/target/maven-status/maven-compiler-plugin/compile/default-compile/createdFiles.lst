@@ -1,0 +1,17 @@
+org\nzy\mapper\TbOrderMapper.class
+org\nzy\mapper\TbItemParamMapper.class
+org\nzy\mapper\TbContentMapper.class
+org\nzy\mapper\TbAddressMapper.class
+org\nzy\mapper\TbItemCatMapper.class
+org\nzy\mapper\TbOrderShippingMapper.class
+org\nzy\mapper\AdminMenusMapper.class
+org\nzy\mapper\TbOrderItemMapper.class
+org\nzy\mapper\TbContentCategoryMapper.class
+org\nzy\mapper\TbItemParamItemMapper.class
+org\nzy\mapper\ChinaMapper.class
+org\nzy\mapper\TbItemDescMapper.class
+org\nzy\mapper\TbMenusMapper.class
+org\nzy\mapper\TbRolesMenusMapper.class
+org\nzy\mapper\TbItemMapper.class
+org\nzy\mapper\TbRolesMapper.class
+org\nzy\mapper\TbUserMapper.class

@@ -1,0 +1,30 @@
+package org.nzy.order.service;
+
+import java.util.List;
+
+import org.nzy.order.pojo.Order;
+import org.nzy.pojo.FjnyResult;
+import org.nzy.pojo.TbAssess;
+import org.nzy.pojo.TbOrder;
+import org.nzy.pojo.TbOrderItem;
+import org.nzy.pojo.TbOrderShipping;
+import org.nzy.utils.LayuiReplay;
+
+public interface OrderService {
+	FjnyResult createOrder(TbOrder order, List<TbOrderItem> orderItems, TbOrderShipping orderShipping);
+	FjnyResult getAddress();
+	LayuiReplay getOrder(Integer page, Integer limit);
+	FjnyResult getOrderByUserId(Long userId);
+	FjnyResult getOrderByOrderId(String orderId);
+	LayuiReplay OrderRefund(Integer page, Integer limit);
+	
+	
+	FjnyResult refund(String orderId,String itemId); //处理退款列表
+	LayuiReplay RefundList(Integer page, Integer limit); //查询TbOrderItem 列表
+	FjnyResult RevokeRefund(String orderId, String itemId); //撤销退款
+	FjnyResult updateAddressOrder(TbOrderShipping tbOrdershipping, TbOrder tbOrder); //修改收货地址
+	FjnyResult deleteOrder(TbOrder tbOrder, TbOrderShipping tbOrderShipping, TbOrderItem tbOrderItem); //删除订单
+	LayuiReplay getOrderAll();
+	FjnyResult evaluate(TbAssess tbAssess); //评价列表
+	
+}

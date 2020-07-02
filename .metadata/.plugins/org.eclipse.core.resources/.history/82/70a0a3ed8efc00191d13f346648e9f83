@@ -1,0 +1,45 @@
+package org.nzy.service.impl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.nzy.mapper.TbUserMapper;
+import org.nzy.pojo.TbList;
+import org.nzy.pojo.TbUser;
+import org.nzy.pojo.TbUserExample;
+import org.nzy.pojo.TbUserExample.Criteria;
+import org.nzy.service.UserService;
+import org.nzy.utils.FjnyResult;
+import org.nzy.utils.LayuiReplay;
+import org.springframework.stereotype.Service;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+@Service
+public class UserServiceImpl implements UserService {
+
+	Long limits = (long) 10;
+	@Resource
+	private TbUserMapper tbUserMapper;
+	@Override
+	public LayuiReplay userList(Integer page, Integer limit) {
+		TbUserExample example=new TbUserExample();
+		PageHelper.startPage(page, limit);
+		List<TbUser> list = tbUserMapper.selectByExample(example);
+		PageInfo<TbList> info = new PageInfo(list);
+		long total = info.getTotal();
+		return LayuiReplay.ok((int)total,list);
+	}
+	/**.
+	 * 修改用户信息
+	 */
+	@Override
+	public FjnyResult updateUser(TbUser tbUser) {
+		TbUserExample example =new TbUserExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andIdEqualTo(tbUser.getId());
+		tbUserMapper.updateByExample(tbUser, example);
+		return null;
+	}
+}

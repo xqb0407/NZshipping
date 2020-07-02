@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;org.nzy.util&apos; to &apos;org.nzy.utils&apos;&#x0D;&#x0A;- Original project: &apos;mall-common&apos;&#x0D;&#x0A;- Original element: &apos;mall-common/src/main/java/org.nzy.util&apos;&#x0D;&#x0A;- Renamed element: &apos;mall-common/src/main/java/org.nzy.utils&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;org.nzy.util&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src\/main\/java&lt;org.nzy.util" name="org.nzy.utils" qualified="false" references="true" stamp="1569047465135" textual="false" version="1.0"/>
+</session>
